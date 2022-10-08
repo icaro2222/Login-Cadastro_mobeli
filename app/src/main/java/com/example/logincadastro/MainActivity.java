@@ -34,8 +34,11 @@ public class MainActivity extends AppCompatActivity {
                 }else if(input_senha.getText().toString().isEmpty()){
                     input_senha.setError("Campo Vazio");
                 }else{
-                    Intent intent = new Intent(MainActivity.this, inicio.class);
-                    startActivity(intent);
+                    boolean retur = appDataBase.insert(input_email.getText().toString(), input_senha.getText().toString());
+                    if (retur){
+                        Intent intent = new Intent(MainActivity.this, inicio.class);
+                        startActivity(intent);
+                    }
                 }
 
             }

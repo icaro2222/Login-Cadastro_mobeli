@@ -42,4 +42,19 @@ public class AppDataBase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
     }
+
+    public boolean insert(String nome, String senha){
+
+        String insert;
+        insert = "INSERT INTO usuarios (nome, email) VALUES (" + nome +
+                ", " + senha + ");";
+
+        try{
+            database.execSQL(insert);
+            return true;
+        }catch (SQLException e){
+            Log.e("DB_LOG", "onCreate: " + e.getLocalizedMessage());
+            return false;
+        }
+    }
 }
