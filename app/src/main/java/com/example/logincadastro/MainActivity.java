@@ -18,6 +18,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        AppDataBase appDataBase = new AppDataBase(this);
+
+
         Button btn_novo_cadastro = (Button) findViewById(R.id.btn_novo_cadastro);
         Button btn_entrar = (Button) findViewById(R.id.btn_entrar);
         EditText input_email = findViewById(R.id.input_email);
