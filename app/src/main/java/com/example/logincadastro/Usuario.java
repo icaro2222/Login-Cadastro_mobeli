@@ -1,6 +1,5 @@
 package com.example.logincadastro;
 
-import java.util.Date;
 
 public class Usuario {
 
@@ -12,7 +11,6 @@ public class Usuario {
     private String senha;
     private String endereco;
     private boolean ativo;
-    private Date data;
 
     public Usuario(String nome, String email) {
         this.nome = nome;
@@ -77,14 +75,6 @@ public class Usuario {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
-    }
-
-    public Date getData() {
-        return data;
-    }
-
-    public void setData(Date data) {
-        this.data = data;
     }
 
     public String getEndereco() {

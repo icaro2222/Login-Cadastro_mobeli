@@ -25,11 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
         Button btn_novo_cadastro = (Button) findViewById(R.id.btn_novo_cadastro);
         Button btn_entrar = (Button) findViewById(R.id.btn_entrar);
-        Button cadastrar = (Button) findViewById(R.id.btn_cadastrar);
-        EditText input_email = findViewById(R.id.input_email);
-        EditText input_senha = findViewById(R.id.input_senha);
+        EditText email = findViewById(R.id.input_email);
+        EditText senha = findViewById(R.id.input_senha);
 
-        Usuario usuario = new Usuario("icaro", "tatakae22");
+        Usuario usuario = new Usuario();
 
 
         btn_entrar.setOnClickListener(new View.OnClickListener() {
@@ -38,16 +37,17 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-                if(input_email.getText().toString().isEmpty()){
-                    input_email.setError("Campo Vazio");
-                }else if(input_senha.getText().toString().isEmpty()){
-                    input_senha.setError("Campo Vazio");
+                if(email.getText().toString().isEmpty()){
+                    email.setError("Campo Vazio");
+                }else if(senha.getText().toString().isEmpty()){
+                    senha.setError("Campo Vazio");
                 }else{
-                    appDataBase.select(input_email.getText().toString(), input_senha.getText().toString());
-                    boolean retur = true;
+                    boolean retur = appDataBase.select(email.getText().toString(), senha.getText().toString());
                     if (retur){
                         Intent intent = new Intent(MainActivity.this, inicio.class);
                         startActivity(intent);
+                    }else{
+                        senha.setError("Email ou Senha Inválida!");
                     }
                 }
 
@@ -67,34 +67,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        cadastrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                EditText input_nome = findViewById(R.id.input_nome);
-                EditText input_email = findViewById(R.id.input_email);
-                EditText input_data_nascimento = findViewById(R.id.input_data_nascimento);
-                EditText input_senha = findViewById(R.id.input_senha);
-                EditText input_endereco = findViewById(R.id.input_endereco);
-
-                Usuario usuario = new Usuario(input_nome.getText().toString(), input_senha.getText().toString());
-
-                usuario.setNome(input_nome.getText().toString());
-                usuario.setEmail(input_email.getText().toString());
-                usuario.setData_nascimento(input_data_nascimento.getText().toString());
-                usuario.setSenha(input_senha.getText().toString());
-                usuario.setEndereco(input_endereco.getText().toString());
-
-                if(appDataBase.insert(usuario)){
-                    ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-                    progressDialog.setTitle("Cadastrando...");
-                    progressDialog.show();
-
-                    Intent intent = new Intent(MainActivity.this, inicio.class);
-                    startActivity(intent);
-                }
-
-            }
-        });
     }
 }

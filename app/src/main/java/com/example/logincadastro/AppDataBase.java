@@ -67,7 +67,7 @@ public class AppDataBase extends SQLiteOpenHelper {
         }
     }
 
-    public List<Usuario> select(String nome, String senha){
+    public boolean select(String email, String senha){
 
         List<Usuario> usuarios = new ArrayList<>();
 
@@ -75,25 +75,30 @@ public class AppDataBase extends SQLiteOpenHelper {
 
         Cursor cursor = null;
 
-        String sql = "SELECT * FROM usuario WHERE nome ==" + nome +
-                     " AND senha == " + senha + ");";
+        String sql = "SELECT * FROM usuario WHERE email =='" + email +
+                     "' AND senha == '" + senha + "';";
 
         cursor = database.rawQuery(sql, null);
 
         if (cursor.moveToFirst()){
-            do {
-                usuarios = (List<Usuario>) new Usuario();
-                usuario.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-                usuario.setEmail(cursor.getString(cursor.getColumnIndex("email")));
-                usuario.setData_nascimento(cursor.getString(cursor.getColumnIndex("data_nascimento")));
-                usuario.setSenha(cursor.getString(cursor.getColumnIndex("senha")));
-                usuario.setEndereco(cursor.getString(cursor.getColumnIndex("endereco")));
-
-                usuarios.add(usuario);
-
-            }while (cursor.moveToNext());
+            return true;
+        }else{
+            return false;
         }
-
-        return usuarios;
+//            do {
+//                usuarios = (List<Usuario>) new Usuario();
+//                usuario.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+//                usuario.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+//                usuario.setData_nascimento(cursor.getString(cursor.getColumnIndex("data_nascimento")));
+//                usuario.setSenha(cursor.getString(cursor.getColumnIndex("senha")));
+//                usuario.setEndereco(cursor.getString(cursor.getColumnIndex("endereco")));
+//
+//                usuarios.add(usuario);
+//
+//            }while (cursor.moveToNext());
+//        }
+//
+//        if (usuarios.stream().count() > 0){
+//        ;
     }
 }
