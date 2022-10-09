@@ -1,12 +1,17 @@
 package com.example.logincadastro;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AppDataBase extends SQLiteOpenHelper {
 
@@ -45,16 +50,50 @@ public class AppDataBase extends SQLiteOpenHelper {
 
     public boolean insert(String nome, String senha){
 
-        String insert;
-        insert = "INSERT INTO usuarios (nome, email) VALUES (" + nome +
-                ", " + senha + ");";
+        ContentValues values = new ContentValues();
+
+        values.put("nome", "icaro");
+        values.put("email", "icaro");
+        values.put("data_nascimento", "icaro");
+        values.put("senha", "icaro");
+        values.put("endereco", "icaro");
 
         try{
-            database.execSQL(insert);
+            database.insert("usuario", null, values);
             return true;
         }catch (SQLException e){
             Log.e("DB_LOG", "onCreate: " + e.getLocalizedMessage());
             return false;
         }
+    }
+
+    public List<Usuario> select(String nome, String senha){
+
+        List<Usuario> usuarios = new ArrayList<>();
+
+        Usuario usuario = null;
+
+        Cursor cursor = null;
+
+        String sql = "SELECT * FROM usuario WHERE nome ==" + nome +
+                     " AND senha == " + senha + ");";
+
+        cursor = database.rawQuery(sql, null);
+
+        if (cursor.moveToFirst()){
+            do {
+                usuarios = (List<Usuario>) new Usuario();
+                usuario.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+                usuario.setEmail(cursor.getString(cursor.getColumnIndex("email")));
+                usuario.setData_nascimento(cursor.getString(cursor.getColumnIndex("data_nascimento")));
+                usuario.setSenha(cursor.getString(cursor.getColumnIndex("senha")));
+                usuario.setEndereco(cursor.getString(cursor.getColumnIndex("endereco")));
+
+                usuarios.add(usuario);
+
+            }while (cursor.moveToNext());
+        }
+
+        return usuarios;
     }
 }

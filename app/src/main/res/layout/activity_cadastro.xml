@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/input_senha" />
 
     <EditText
-        android:id="@+id/input_name"
+        android:id="@+id/input_nome"
         android:layout_width="294dp"
         android:layout_height="wrap_content"
         android:ems="10"
