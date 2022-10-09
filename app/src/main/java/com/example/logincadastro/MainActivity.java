@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
                     input_senha.setError("Campo Vazio");
                 }else{
                     appDataBase.select(input_email.getText().toString(), input_senha.getText().toString());
-                    boolean retur = appDataBase.insert(input_email.getText().toString(), input_senha.getText().toString());
+                    boolean retur = true;
                     if (retur){
                         Intent intent = new Intent(MainActivity.this, inicio.class);
                         startActivity(intent);
@@ -79,17 +79,21 @@ public class MainActivity extends AppCompatActivity {
 
                 Usuario usuario = new Usuario(input_nome.getText().toString(), input_senha.getText().toString());
 
-                usuario.setEndereco(input_endereco.getText().toString());
-                usuario.setEndereco(input_endereco.getText().toString());
+                usuario.setNome(input_nome.getText().toString());
+                usuario.setEmail(input_email.getText().toString());
+                usuario.setData_nascimento(input_data_nascimento.getText().toString());
+                usuario.setSenha(input_senha.getText().toString());
                 usuario.setEndereco(input_endereco.getText().toString());
 
+                if(appDataBase.insert(usuario)){
+                    ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog.setTitle("Cadastrando...");
+                    progressDialog.show();
 
-                ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-                progressDialog.setTitle("Validando...");
-                progressDialog.show();
+                    Intent intent = new Intent(MainActivity.this, inicio.class);
+                    startActivity(intent);
+                }
 
-                Intent intent = new Intent(MainActivity.this, Cadastro.class);
-                startActivity(intent);
             }
         });
     }

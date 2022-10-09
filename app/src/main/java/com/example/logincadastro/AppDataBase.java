@@ -48,15 +48,15 @@ public class AppDataBase extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
     }
 
-    public boolean insert(String nome, String senha){
+    public boolean insert(Usuario usuario){
 
         ContentValues values = new ContentValues();
 
-        values.put("nome", "icaro");
-        values.put("email", "icaro");
-        values.put("data_nascimento", "icaro");
-        values.put("senha", "icaro");
-        values.put("endereco", "icaro");
+        values.put("nome", usuario.getNome());
+        values.put("email", usuario.getEmail());
+        values.put("data_nascimento", usuario.getData_nascimento());
+        values.put("senha", usuario.getSenha());
+        values.put("endereco", usuario.getEndereco());
 
         try{
             database.insert("usuario", null, values);
