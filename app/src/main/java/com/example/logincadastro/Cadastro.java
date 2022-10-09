@@ -34,21 +34,33 @@ public class Cadastro extends AppCompatActivity {
 
                 Usuario usuario = new Usuario();
 
-                usuario.setNome(input_nome.getText().toString());
-                usuario.setEmail(input_email.getText().toString());
-                usuario.setData_nascimento(input_data_nascimento.getText().toString());
-                usuario.setSenha(input_senha.getText().toString());
-                usuario.setEndereco(input_endereco.getText().toString());
+                String nome = input_nome.getText().toString();
+                String email = input_email.getText().toString();
+                String data_nascimento = input_data_nascimento.getText().toString();
+                String senha = input_senha.getText().toString();
+                String endereco = input_endereco.getText().toString();
 
-                if(appDataBase.insert(usuario)){
-                    ProgressDialog progressDialog = new ProgressDialog(Cadastro.this);
-                    progressDialog.setTitle("Cadastrando...");
-                    progressDialog.show();
 
-                    Intent intent = new Intent(Cadastro.this, inicio.class);
-                    startActivity(intent);
+                if (!nome.isEmpty() &&
+                    !email.isEmpty() &&
+                    !data_nascimento.isEmpty() &&
+                    !senha.isEmpty() &&
+                    !endereco.isEmpty()){
+
+                    if (senha.)
+                    usuario.setNome(nome);
+                    usuario.setEmail(email);
+                    usuario.setData_nascimento(data_nascimento);
+                    usuario.setSenha(senha);
+                    usuario.setEndereco(endereco);
+
+                    if(appDataBase.insert(usuario)){
+                        Intent intent = new Intent(Cadastro.this, inicio.class);
+                        startActivity(intent);
+                    }
+                }else{
+                    input_nome.setError("Verifique os Campos!");
                 }
-
             }
         });
     }
