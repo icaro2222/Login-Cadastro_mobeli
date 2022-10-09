@@ -47,16 +47,19 @@ public class Cadastro extends AppCompatActivity {
                     !senha.isEmpty() &&
                     !endereco.isEmpty()){
 
-                    if (senha.)
-                    usuario.setNome(nome);
-                    usuario.setEmail(email);
-                    usuario.setData_nascimento(data_nascimento);
-                    usuario.setSenha(senha);
-                    usuario.setEndereco(endereco);
+                    if (senha.length() < 8){
+                        input_senha.setError("Pelo Menos 8 Digitos");
+                    }else{
+                        usuario.setNome(nome);
+                        usuario.setEmail(email);
+                        usuario.setData_nascimento(data_nascimento);
+                        usuario.setSenha(senha);
+                        usuario.setEndereco(endereco);
 
-                    if(appDataBase.insert(usuario)){
-                        Intent intent = new Intent(Cadastro.this, inicio.class);
-                        startActivity(intent);
+                        if(appDataBase.insert(usuario)){
+                            Intent intent = new Intent(Cadastro.this, inicio.class);
+                            startActivity(intent);
+                        }
                     }
                 }else{
                     input_nome.setError("Verifique os Campos!");
