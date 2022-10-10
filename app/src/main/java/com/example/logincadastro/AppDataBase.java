@@ -75,10 +75,12 @@ public class AppDataBase extends SQLiteOpenHelper {
 
         Cursor cursor = null;
 
-        String sql = "SELECT * FROM usuario WHERE email =='" + email +
-                     "' AND senha == '" + senha + "';";
+        String sql = "SELECT * FROM usuario WHERE email == ? " +
+                     "AND senha == ?;";
 
-        cursor = database.rawQuery(sql, null);
+
+
+        cursor = database.rawQuery(sql, new String[]{email, senha});
 
         if (cursor.moveToFirst()){
             return true;
