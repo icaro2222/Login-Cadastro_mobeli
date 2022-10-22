@@ -10,8 +10,8 @@
         android:id="@+id/textView"
         android:layout_width="287dp"
         android:layout_height="97dp"
-        android:layout_marginTop="156dp"
-        android:text="success"
+        android:layout_marginTop="48dp"
+        android:text="sucesso"
         android:textAlignment="center"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -21,12 +21,94 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="333dp"
-        android:layout_height="321dp"
+        android:layout_width="194dp"
+        android:layout_height="249dp"
+        android:rotation="-90"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/_efs" />
+        app:srcCompat="@color/purple_700"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/btn_cadastrar"
+        android:layout_width="174dp"
+        android:layout_height="73dp"
+        android:layout_marginBottom="56dp"
+        android:text="Atualizar Cadastro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/text_nome"
+        android:layout_width="199dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="40dp"
+        android:hint="Nome"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.083"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/text_email"
+        android:layout_width="196dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="44dp"
+        android:hint="Email"
+        android:textAlignment="textStart"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.082"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_nome" />
+
+    <TextView
+        android:id="@+id/text_data_nascimneto"
+        android:layout_width="209dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="28dp"
+        android:hint="Data de Nacismento"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_email" />
+
+    <TextView
+        android:id="@+id/text_senha"
+        android:layout_width="168dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="28dp"
+        android:hint="Senha"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_data_nascimneto" />
+
+    <TextView
+        android:id="@+id/text_endereco"
+        android:layout_width="168dp"
+        android:layout_height="84dp"
+        android:layout_marginTop="24dp"
+        android:hint="Endereço"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.848"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_data_nascimneto" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

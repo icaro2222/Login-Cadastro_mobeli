@@ -21,16 +21,31 @@ public class Cadastro extends AppCompatActivity {
 
         AppDataBase appDataBase = new AppDataBase(this);
 
+        EditText input_nome = findViewById(R.id.input_nome);
+        EditText input_email = findViewById(R.id.input_email);
+        EditText input_data_nascimento = findViewById(R.id.input_data_nascimento);
+        EditText input_senha = findViewById(R.id.input_senha);
+        EditText input_endereco = findViewById(R.id.input_endereco);
+
+        //Colocar valores de Email e Senha que vieram da tela de Login
+
+        //Variavel para receber o que veio da tela de Login
+        String text_email, text_senha;
+        //Usando extra para pegar valores do Intent
+        Bundle extra = getIntent().getExtras();
+        //Verificando se veio algum valor da tela anterior
+        if (extra != null){
+            //Jogando os valores de Extra para variveis, que seram utilizadas
+            text_email = extra.getString("text_email");
+            text_senha = extra.getString("text_senha");
+            input_email.setText(text_email);
+            input_senha.setText(text_senha);
+        }
+
 
         btn_cadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                EditText input_nome = findViewById(R.id.input_nome);
-                EditText input_email = findViewById(R.id.input_email);
-                EditText input_data_nascimento = findViewById(R.id.input_data_nascimento);
-                EditText input_senha = findViewById(R.id.input_senha);
-                EditText input_endereco = findViewById(R.id.input_endereco);
 
                 Usuario usuario = new Usuario();
 
@@ -41,11 +56,17 @@ public class Cadastro extends AppCompatActivity {
                 String endereco = input_endereco.getText().toString();
 
 
-                if (!nome.isEmpty() &&
-                    !email.isEmpty() &&
-                    !data_nascimento.isEmpty() &&
-                    !senha.isEmpty() &&
-                    !endereco.isEmpty()){
+                if (nome.isEmpty()){
+                    input_nome.setError("Campo Obrigatório!");
+                }else if (email.isEmpty()) {
+                    input_email.setError("Campo Obrigatório!");
+                }else if (data_nascimento.isEmpty()) {
+                    input_data_nascimento.setError("Campo Obrigatório!");
+                }else if (senha.isEmpty()) {
+                    input_senha.setError("Campo Obrigatório!");
+                }else if (endereco.isEmpty()) {
+                    input_endereco.setError("Campo Obrigatório!");
+                }else{
 
                     if (senha.length() < 8){
                         input_senha.setError("Pelo Menos 8 Digitos");
@@ -58,11 +79,14 @@ public class Cadastro extends AppCompatActivity {
 
                         if(appDataBase.insert(usuario)){
                             Intent intent = new Intent(Cadastro.this, inicio.class);
+                            intent.putExtra("nome", nome);
+                            intent.putExtra("email", email);
+                            intent.putExtra("data_nascimento", data_nascimento);
+                            intent.putExtra("senha", senha);
+                            intent.putExtra("endereco", endereco);
                             startActivity(intent);
                         }
                     }
-                }else{
-                    input_nome.setError("Verifique os Campos!");
                 }
             }
         });
